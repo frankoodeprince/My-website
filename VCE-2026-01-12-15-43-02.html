@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shop Mobile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;}
+header{background:#ff9900;color:white;padding:15px;text-align:center;}
+.products{display:flex;flex-wrap:wrap;padding:10px;}
+.product{background:white;width:48%;margin:1%;padding:10px;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.product img{width:100%;height:120px;background:#eee;}
+.price{color:#ff6600;font-weight:bold;font-size:18px;}
+.cart-btn{background:#ff6600;color:white;border:none;padding:8px;width:100%;border-radius:3px;margin-top:5px;}
+.cart{position:fixed;bottom:0;width:100%;background:white;padding:10px;box-shadow:0 -2px 10px rgba(0,0,0,0.2);}
+</style>
+</head>
+<body>
+<header><h2>🛍️ MobileShop</h2><p>Tap to buy!</p></header>
+
+<div class="products">
+<div class="product">
+<div style="background:#e0e0e0;height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;">📱</div>
+<h4>Smartphone</h4>
+<div class="price">$699</div>
+<button class="cart-btn" onclick="addToCart('Smartphone',699)">Add to Cart</button>
+</div>
+
+<div class="product">
+<div style="background:#e0e0e0;height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;">🎧</div>
+<h4>Headphones</h4>
+<div class="price">$89</div>
+<button class="cart-btn" onclick="addToCart('Headphones',89)">Add to Cart</button>
+</div>
+
+<div class="product">
+<div style="background:#e0e0e0;height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;">💻</div>
+<h4>Laptop</h4>
+<div class="price">$999</div>
+<button class="cart-btn" onclick="addToCart('Laptop',999)">Add to Cart</button>
+</div>
+
+<div class="product">
+<div style="background:#e0e0e0;height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;">👟</div>
+<h4>Shoes</h4>
+<div class="price">$79</div>
+<button class="cart-btn" onclick="addToCart('Shoes',79)">Add to Cart</button>
+</div>
+</div>
+
+<div class="cart">
+<button onclick="showCart()" style="width:100%;padding:15px;background:#333;color:white;border:none;">
+Cart: <span id="cartCount">0</span> items | Total: $<span id="total">0</span>
+</button>
+<div id="cartItems" style="display:none;margin-top:10px;"></div>
+</div>
+
+<script>
+let cart=[],total=0;
+function addToCart(n,p){cart.push({n,p});total+=p;updateCart();alert(`Added ${n}!`);}
+function updateCart(){document.getElementById('cartCount').textContent=cart.length;document.getElementById('total').textContent=total;}
+function showCart(){let items=document.getElementById('cartItems');items.style.display=items.style.display=='block'?'none':'block';items.innerHTML='<h3>Your Items:</h3>'+cart.map(i=>`<div>${i.n} - $${i.p}</div>`).join('');}
+</script>
+</body>
+</html>
